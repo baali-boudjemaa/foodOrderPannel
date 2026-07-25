@@ -9,7 +9,7 @@ export function proxy(request: NextRequest) {
 
   if (
     !token &&
-    request.nextUrl.pathname.startsWith("/dashboard")
+    request.nextUrl.pathname.startsWith("/")
   ) {
     return NextResponse.redirect(
       new URL("/login", request.url)
@@ -20,5 +20,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*"],
+  matcher: ["/", "/cart", "/checkout", "/orders", "/profile"],
 };
