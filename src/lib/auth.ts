@@ -4,6 +4,10 @@ import type { Role, User } from '@/types';
 export function saveTokens(accessToken: string, refreshToken: string) {
   localStorage.setItem('accessToken', accessToken);
   localStorage.setItem('refreshToken', refreshToken);
+  // Also set a cookie so proxy.ts (server-side) can see the auth state.
+  // NOTE: for real security this should be an httpOnly cookie set by the
+  // backend on /auth/login, not JS-readable — this is a minimal client-side fix.
+  document.cookie = `token=${accessToken}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
 }
 
 export function saveUser(user: User) {
@@ -25,6 +29,7 @@ export function clearAuth() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('currentUser');
+  document.cookie = 'token=; path=/; max-age=0';
 }
 
 export async function fetchCurrentUser(): Promise<User> {
