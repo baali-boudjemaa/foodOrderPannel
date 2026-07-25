@@ -37,6 +37,11 @@ export default function Header() {
                     لوحة التوصيل
                   </Link>
                 )}
+                {user.role === 'OWNER' && (
+                  <Link href="/owner" className="px-3 py-2 text-sm text-gray-600 hover:text-primary">
+                    لوحة التحكم
+                  </Link>
+                )}
                 {user.role === 'CUSTOMER' && (
                   <>
                     <Link href="/orders" className="px-3 py-2 text-sm text-gray-600 hover:text-primary">

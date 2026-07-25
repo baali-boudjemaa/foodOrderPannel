@@ -28,6 +28,7 @@ export interface Restaurant {
   isActive: boolean;
   distanceKm?: number;
   categories?: Category[];
+  workingHours?: WorkingHour[];
 }
 
 export interface WorkingHour {

@@ -48,7 +48,7 @@ export function getHomeRouteForRole(role: Role): string {
     case 'DELIVERY':
       return '/delivery';
     case 'OWNER':
-      return '/';
+      return '/owner';
     case 'ADMIN':
       return '/';
     default:
